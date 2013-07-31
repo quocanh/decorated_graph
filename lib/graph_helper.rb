@@ -1,5 +1,5 @@
-module DecoratedGraph
-  module Helper
+module Prawn
+  module DecoratedGraphHelper
 
   	# Scale array of points to fit within rectangle of 'width' and 'height'
   	# You can assign min and max value for each end_point of an axis
@@ -99,5 +99,33 @@ module DecoratedGraph
 	  out
 	end
 
+	def self.format_number number
+	  number.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
+	end
+
+	def self.format_logarithmic_legend vmin, vmax
+	  raise "max_value must be greater than min_value" unless vmax > vmin
+	  min = vmin.floor
+	  max = vmax.ceil
+	  out = []
+	  m = min
+	  while m <= max
+	  	val = (m <= 0) ? (10 ** m).to_f.to_s : format_number(10 ** m)
+	  	out << val
+	  	m += 1
+	  end
+	  out
+	end
+
+	def self.format_logarithmic_ticks vmin, vmax
+	  raise "max_value must be greater than min_value" unless vmax > vmin
+	  min = vmin.floor
+	  max = vmax.ceil
+	  out = []
+	  (max - min + 1).to_i.times { out << 1 }
+	  out
+	end
+
   end # of Helper module
 end # of DecoratedGraph module
+
