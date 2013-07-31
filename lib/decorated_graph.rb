@@ -1,5 +1,7 @@
 require 'prawn'
 
+require_relative 'graph_helper'
+
 # Note: It's not easy to switch font back and forth in prawn pdf, so we keep same font though out the graph.
 #       To change font, you can create a pdf, set its font to some font-family, then call raw_graph, 
 #       then set font back to default ('Helvetica')
