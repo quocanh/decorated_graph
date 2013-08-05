@@ -195,6 +195,7 @@ module Prawn
 		  x = org_x + xl_offset + p[0] - point_spec[:size]/2 
 		  align = :center and x = org_x + xl_offset + p[0] - v_width/2 if (xl_offset + p[0]) >= v_width/2
 		  align = :right and x = x = org_x + xl_offset + p[0] - v_width + point_spec[:size]/2 if (xl_offset + p[0] + v_width/2) >= @width
+		  x += (2 + point_spec[:size]/2) if p[0] < 2
 		  @pdf.text_box(val, 
 					 :at => [x, y],
 					 :width => v_width,
