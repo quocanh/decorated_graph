@@ -100,6 +100,20 @@ module Prawn
 			  out
 			end
 
+			def self.format_date_ticks min_date, max_date
+			  min = min_date.strftime("%m")
+			  max = max_date.strftime("%m")
+			  raise "max_date must be later than min_date" unless max_date > min_date
+			  out = ['1']
+			  m = min_date.next_month
+			  while m <= max_date
+			  	out << '1'
+			  	m = m.next_month
+			  end
+			  out << "1"
+			  out
+			end
+
 			def self.format_number number
 			  number.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
 			end
